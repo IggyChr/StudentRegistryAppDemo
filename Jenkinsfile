@@ -12,16 +12,16 @@ pipeline {
     stages {
         stage ('Checkout') {
             steps {
-                checkout scm
+                git branch: 'main', url: 'https://github.com/IggyChr/StudentRegistryAppDemo'
             }  
         }
 
         stage ('install dependencies') {
             steps {
                 if(isUnix()) {
-                    sh 'npm install'
+                    bat 'npm install'
                 } else {
-                    sh 'npm install'
+                    bat 'npm install'
                 }
             }
         }
@@ -29,9 +29,9 @@ pipeline {
         stage ('starting the applicationa nd run tests') {
             steps {
                script {
-                sh 'npm start &'
-                sh 'wait-on http://localhost:8090'
-                sh 'npm test'
+                bat 'npm start &'
+                bat 'wait-on http://localhost:8090'
+                bat 'npm test'
                } 
             }
         }
