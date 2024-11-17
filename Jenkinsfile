@@ -10,7 +10,7 @@ pipeline {
 
         stage ('install dependencies') {
             steps {
-                step {
+                script {
                     if(isUnix()) {
                         bat 'npm install'
                     } else {
